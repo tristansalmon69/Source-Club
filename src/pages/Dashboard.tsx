@@ -23,13 +23,13 @@ export function Dashboard() {
 
             {/* Club Filter */}
             {clubs.length > 1 && (
-                <div className="flex items-center gap-2 overflow-x-auto pb-2">
+                <div className="sticky top-16 md:top-20 z-10 bg-[#0a0a0f]/95 backdrop-blur py-2 -mx-4 px-4 md:mx-0 md:px-0 flex items-center gap-2 overflow-x-auto border-b border-slate-800/50 md:border-none">
                     <Filter className="h-4 w-4 text-slate-400 flex-shrink-0" />
                     <button
                         onClick={() => setFilterClubId(undefined)}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${!filterClubId
-                                ? 'bg-indigo-600 text-white'
-                                : 'bg-slate-800 text-slate-400 hover:text-slate-100'
+                            ? 'bg-indigo-600 text-white'
+                            : 'bg-slate-800 text-slate-400 hover:text-slate-100'
                             }`}
                     >
                         Tous les clubs
@@ -39,8 +39,8 @@ export function Dashboard() {
                             key={club.id}
                             onClick={() => setFilterClubId(club.id)}
                             className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${filterClubId === club.id
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-slate-800 text-slate-400 hover:text-slate-100'
+                                ? 'bg-indigo-600 text-white'
+                                : 'bg-slate-800 text-slate-400 hover:text-slate-100'
                                 }`}
                         >
                             {club.icon} {club.name}

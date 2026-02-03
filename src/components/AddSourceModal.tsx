@@ -116,8 +116,8 @@ export function AddSourceModal({ isOpen, onClose, onSuccess, preselectedClubId }
     if (!isOpen) return null
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-            <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-[#0a0a0f] md:bg-black/50 md:backdrop-blur-sm">
+            <Card className="w-full h-full md:h-auto md:max-w-2xl md:max-h-[90vh] overflow-y-auto rounded-none md:rounded-xl border-0 md:border">
                 <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle>Ajouter une source</CardTitle>
                     <button

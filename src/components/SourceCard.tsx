@@ -27,7 +27,7 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
                 <div className="flex gap-4">
                     {/* Thumbnail */}
                     {source.thumbnail ? (
-                        <div className="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-slate-700">
+                        <div className="flex-shrink-0 w-[60px] h-[60px] md:w-24 md:h-24 rounded-lg overflow-hidden bg-slate-700">
                             <img
                                 src={source.thumbnail}
                                 alt={source.title || domain || 'Source image'}
@@ -38,8 +38,8 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
                             />
                         </div>
                     ) : (
-                        <div className="flex-shrink-0 w-24 h-24 rounded-lg bg-slate-700 flex items-center justify-center">
-                            <ExternalLink className="h-8 w-8 text-slate-500" />
+                        <div className="flex-shrink-0 w-[60px] h-[60px] md:w-24 md:h-24 rounded-lg bg-slate-700 flex items-center justify-center">
+                            <ExternalLink className="h-6 w-6 md:h-8 md:w-8 text-slate-500" />
                         </div>
                     )}
 
@@ -75,10 +75,10 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
                             {onDelete && (
                                 <button
                                     onClick={() => onDelete(source.id)}
-                                    className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-500/10 rounded text-red-400 hover:text-red-300"
+                                    className="p-3 md:p-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/10 rounded-full text-red-400 hover:text-red-300"
                                     title="Supprimer"
                                 >
-                                    <Trash2 className="h-4 w-4" />
+                                    <Trash2 className="h-5 w-5 md:h-4 md:w-4" />
                                 </button>
                             )}
                         </div>
