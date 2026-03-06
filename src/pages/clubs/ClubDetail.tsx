@@ -5,13 +5,17 @@ import { useClubSources } from '../../hooks/useClubSources'
 import { SourceCard } from '../../components/SourceCard'
 import { Button } from '../../components/ui/Button'
 import { InviteModal } from '../../components/InviteModal'
+import { ClubSettingsModal } from '../../components/ClubSettingsModal'
 import { Users, Settings, Loader2 } from 'lucide-react'
+import { useAuth } from '../../components/AuthProvider'
 
 export function ClubDetail() {
     const { clubId } = useParams<{ clubId: string }>()
-    const { club, loading: clubLoading } = useClub(clubId)
+    const { user } = useAuth()
+    const { club, loading: clubLoading, refetch } = useClub(clubId)
     const { sources, loading: sourcesLoading } = useClubSources(clubId)
     const [showInviteModal, setShowInviteModal] = useState(false)
+    const [showSettingsModal, setShowSettingsModal] = useState(false)
 
     if (clubLoading) {
         return (
@@ -28,6 +32,8 @@ export function ClubDetail() {
             </div>
         )
     }
+
+    const isAdmin = club.members.find(m => m.user_id === user?.id)?.role === 'admin'
 
     return (
         <div className="space-y-6">
@@ -54,8 +60,11 @@ export function ClubDetail() {
                     <Button onClick={() => setShowInviteModal(true)}>
                         Inviter
                     </Button>
-                    {/* TODO: Only show for admins */}
-                    <Button variant="ghost" size="sm">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowSettingsModal(true)}
+                    >
                         <Settings className="h-5 w-5" />
                     </Button>
                 </div>
@@ -127,6 +136,18 @@ export function ClubDetail() {
                 onClose={() => setShowInviteModal(false)}
                 inviteCode={club.invite_code}
                 clubName={club.name}
+            />
+
+            {/* Settings Modal */}
+            <ClubSettingsModal
+                isOpen={showSettingsModal}
+                onClose={() => setShowSettingsModal(false)}
+                club={club}
+                isAdmin={isAdmin}
+                onSuccess={() => {
+                    refetch()
+                    setShowSettingsModal(false)
+                }}
             />
         </div>
     )

@@ -128,3 +128,75 @@ export function useJoinClub() {
 
     return { joinClub, searchClub, loading, error }
 }
+
+export function useClubMutations() {
+    const { user } = useAuth()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+
+    const updateClub = async (clubId: string, updates: {
+        name?: string
+        description?: string
+        icon?: string
+        theme?: string
+    }): Promise<boolean> => {
+        try {
+            setLoading(true)
+            setError(null)
+            const { error: updateError } = await supabase
+                .from('clubs')
+                .update(updates)
+                .eq('id', clubId)
+
+            if (updateError) throw updateError
+            return true
+        } catch (err: any) {
+            setError(err.message)
+            return false
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const deleteClub = async (clubId: string): Promise<boolean> => {
+        try {
+            setLoading(true)
+            setError(null)
+            const { error: deleteError } = await supabase
+                .from('clubs')
+                .delete()
+                .eq('id', clubId)
+
+            if (deleteError) throw deleteError
+            return true
+        } catch (err: any) {
+            setError(err.message)
+            return false
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const leaveClub = async (clubId: string): Promise<boolean> => {
+        if (!user) return false
+        try {
+            setLoading(true)
+            setError(null)
+            const { error: leaveError } = await supabase
+                .from('club_members')
+                .delete()
+                .eq('club_id', clubId)
+                .eq('user_id', user.id)
+
+            if (leaveError) throw leaveError
+            return true
+        } catch (err: any) {
+            setError(err.message)
+            return false
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    return { updateClub, deleteClub, leaveClub, loading, error }
+}
