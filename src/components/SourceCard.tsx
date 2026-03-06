@@ -65,10 +65,10 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
                                     href={source.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm text-indigo-400 hover:text-indigo-300 hover:underline inline-flex items-center gap-1"
+                                    className="text-sm text-indigo-400 hover:text-indigo-300 hover:underline inline-flex items-center gap-1 max-w-[180px] sm:max-w-full"
                                 >
-                                    {domain}
-                                    <ExternalLink className="h-3 w-3" />
+                                    <span className="truncate">{domain}</span>
+                                    <ExternalLink className="h-3 w-3 flex-shrink-0" />
                                 </a>
                             </div>
 

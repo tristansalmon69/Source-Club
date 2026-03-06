@@ -12,14 +12,14 @@ export function Layout() {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
     return (
-        <div className="flex h-screen bg-[#0a0a0f] text-slate-100">
+        <div className="flex h-screen bg-[#0a0a0f] text-slate-100 overflow-x-hidden">
             {/* Club Sidebar - Desktop Only */}
             <div className="hidden md:flex">
                 <ClubSidebar />
             </div>
 
             {/* Main Content */}
-            <main className="flex-1 overflow-y-auto pb-20 md:pb-0">
+            <main className="flex-1 overflow-y-auto overflow-x-hidden pb-20 md:pb-0">
                 {/* Mobile Header */}
                 <header className="md:hidden flex items-center justify-between border-b border-slate-800 bg-[#0a0a0f]/95 backdrop-blur-sm p-4 sticky top-0 z-20">
                     <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
@@ -69,7 +69,7 @@ export function Layout() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Rejoindre le Discord"
-                className="group fixed top-1/2 -translate-y-1/2 right-4 z-50 flex items-center gap-3"
+                className="group fixed bottom-36 right-4 md:top-1/2 md:bottom-auto md:-translate-y-1/2 md:right-4 z-50 flex items-center gap-3"
             >
                 {/* Tooltip — toujours visible sur desktop, au survol sur mobile */}
                 <span className="hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 pointer-events-none w-52 rounded-xl bg-slate-800/95 border border-slate-700 px-3 py-2 text-xs text-slate-200 leading-snug shadow-xl text-right">

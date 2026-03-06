@@ -8,7 +8,20 @@
 }
 
 @layer base {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+
     body {
         @apply bg-slate-900 text-slate-100;
+        overflow-x: hidden;
+        max-width: 100vw;
     }
 }

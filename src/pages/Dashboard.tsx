@@ -14,16 +14,19 @@ export function Dashboard() {
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-3xl font-bold">Feed global</h1>
-                <p className="text-slate-400 mt-1">
+            <div className="min-w-0">
+                <h1 className="text-3xl font-bold truncate">Feed global</h1>
+                <p className="text-slate-400 mt-1 text-sm">
                     Découvre les sources partagées par tes clubs
                 </p>
             </div>
 
             {/* Club Filter */}
             {clubs.length > 1 && (
-                <div className="sticky top-16 md:top-20 z-10 bg-[#0a0a0f]/95 backdrop-blur py-2 -mx-4 px-4 md:mx-0 md:px-0 flex items-center gap-2 overflow-x-auto border-b border-slate-800/50 md:border-none">
+                <div
+                    className="sticky top-16 md:top-20 z-10 bg-[#0a0a0f]/95 backdrop-blur py-2 -mx-4 px-4 md:mx-0 md:px-0 flex items-center gap-2 border-b border-slate-800/50 md:border-none"
+                    style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
+                >
                     <Filter className="h-4 w-4 text-slate-400 flex-shrink-0" />
                     <button
                         onClick={() => setFilterClubId(undefined)}
