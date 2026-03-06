@@ -22,7 +22,7 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
     const domain = source.domain || new URL(source.url).hostname
 
     return (
-        <Card className="group hover:border-indigo-500/50 transition-all">
+        <Card className="group hover:border-indigo-500/50 transition-all overflow-hidden">
             <CardContent className="p-4">
                 <div className="flex gap-4">
                     {/* Thumbnail */}
@@ -49,23 +49,22 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
                         {showClubPill && source.club && (
                             <Link
                                 to={`/clubs/${source.club.id}`}
-                                className="inline-flex items-center gap-2 bg-slate-700 rounded-full px-3 py-1 text-sm mb-2 hover:bg-slate-600 transition-colors"
+                                className="inline-flex items-center gap-2 bg-slate-700 rounded-full px-3 py-1 text-sm mb-2 hover:bg-slate-600 transition-colors max-w-full"
                             >
-                                <span>{source.club.icon}</span>
-                                <span>{source.club.name}</span>
+                                <span className="truncate">{source.club.icon} {source.club.name}</span>
                             </Link>
                         )}
 
                         <div className="flex items-start justify-between gap-2 mb-2">
                             <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-slate-100 line-clamp-2 mb-1">
+                                <h3 className="font-semibold text-slate-100 line-clamp-2 mb-1 break-words">
                                     {source.title || source.url}
                                 </h3>
                                 <a
                                     href={source.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm text-indigo-400 hover:text-indigo-300 hover:underline inline-flex items-center gap-1 max-w-[180px] sm:max-w-full"
+                                    className="text-sm text-indigo-400 hover:text-indigo-300 hover:underline inline-flex items-center gap-1 max-w-full"
                                 >
                                     <span className="truncate">{domain}</span>
                                     <ExternalLink className="h-3 w-3 flex-shrink-0" />
@@ -75,7 +74,7 @@ export function SourceCard({ source, onDelete, showClubPill = true }: SourceCard
                             {onDelete && (
                                 <button
                                     onClick={() => onDelete(source.id)}
-                                    className="p-3 md:p-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/10 rounded-full text-red-400 hover:text-red-300"
+                                    className="p-3 md:p-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/10 rounded-full text-red-400 hover:text-red-300 flex-shrink-0"
                                     title="Supprimer"
                                 >
                                     <Trash2 className="h-5 w-5 md:h-4 md:w-4" />

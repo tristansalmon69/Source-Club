@@ -24,7 +24,7 @@ export function Dashboard() {
             {/* Club Filter */}
             {clubs.length > 1 && (
                 <div
-                    className="sticky top-16 md:top-20 z-10 bg-[#0a0a0f]/95 backdrop-blur py-2 -mx-4 px-4 md:mx-0 md:px-0 flex items-center gap-2 border-b border-slate-800/50 md:border-none"
+                    className="sticky top-16 md:top-20 z-10 bg-[#0a0a0f]/95 backdrop-blur py-2 -mx-4 px-4 md:mx-0 md:px-0 flex items-center gap-2 border-b border-slate-800/50 md:border-none no-scrollbar"
                     style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
                 >
                     <Filter className="h-4 w-4 text-slate-400 flex-shrink-0" />
@@ -49,6 +49,8 @@ export function Dashboard() {
                             {club.icon} {club.name}
                         </button>
                     ))}
+                    {/* Spacer for horizontal scroll end padding */}
+                    <div className="w-8 flex-shrink-0 h-1" aria-hidden="true" />
                 </div>
             )}
 

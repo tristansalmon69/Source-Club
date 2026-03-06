@@ -140,7 +140,6 @@ export function AddSourceModal({ isOpen, onClose, onSuccess, preselectedClubId }
                                 onChange={(e) => setUrl(e.target.value)}
                                 onBlur={handleUrlBlur}
                                 required
-                                autoFocus
                             />
                             {fetchingMetadata && (
                                 <p className="text-sm text-slate-400 flex items-center gap-2">
