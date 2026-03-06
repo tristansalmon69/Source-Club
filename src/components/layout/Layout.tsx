@@ -69,12 +69,11 @@ export function Layout() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Rejoindre le Discord"
-                className="group fixed bottom-24 right-5 md:bottom-8 md:right-8 z-50"
+                className="group fixed top-1/2 -translate-y-1/2 right-4 z-50 flex items-center gap-3"
             >
-                {/* Tooltip */}
-                <span className="absolute bottom-full right-0 mb-3 w-56 rounded-xl bg-slate-800 border border-slate-700 px-3 py-2 text-xs text-slate-200 leading-snug shadow-xl opacity-0 scale-95 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:scale-100">
+                {/* Tooltip — toujours visible sur desktop, au survol sur mobile */}
+                <span className="hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 pointer-events-none w-52 rounded-xl bg-slate-800/95 border border-slate-700 px-3 py-2 text-xs text-slate-200 leading-snug shadow-xl text-right">
                     Tes idées prennent vie ici. Bug, feature, suggestion → envoie.
-                    <span className="absolute bottom-0 right-5 translate-y-1/2 rotate-45 w-2 h-2 bg-slate-800 border-r border-b border-slate-700" />
                 </span>
 
                 {/* Button */}
