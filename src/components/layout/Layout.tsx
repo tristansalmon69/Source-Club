@@ -74,8 +74,8 @@ export function Layout() {
             <main className="flex-1 overflow-y-auto overflow-x-hidden pb-20 md:pb-0">
                 {/* Mobile Header */}
                 <header className="md:hidden flex items-center justify-between border-b border-slate-800 bg-[#0a0a0f]/95 backdrop-blur-sm p-4 sticky top-0 z-20">
-                    <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                        SourceClub
+                    <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tighter italic">
+                        Melting Pote
                     </h1>
                     <Button variant="ghost" size="sm" onClick={() => signOut()}>
                         <LogOut className="h-5 w-5" />
@@ -84,8 +84,8 @@ export function Layout() {
 
                 {/* Desktop Header */}
                 <header className="hidden md:flex items-center justify-between border-b border-slate-800 bg-[#0a0a0f] p-6 sticky top-0 z-20">
-                    <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                        SourceClub
+                    <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tighter italic">
+                        Melting Pote
                     </h1>
                     <Button variant="ghost" onClick={() => signOut()}>
                         <LogOut className="h-5 w-5 mr-2" />
@@ -130,7 +130,7 @@ export function Layout() {
                     touchAction: 'none'
                 }}
                 className={`group fixed bottom-36 right-4 md:bottom-24 md:right-8 z-50 flex items-center gap-3 cursor-move select-none ${isDragging ? 'scale-110 active:scale-95' : ''}`}
-                onClick={(e) => {
+                onClick={() => {
                     // Prevent navigation if we dragged more than 5px
                     if (Math.abs(position.x) > 5 || Math.abs(position.y) > 5) {
                         // This logic is tricky with absolute translation. 

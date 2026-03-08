@@ -69,8 +69,8 @@ export function Dashboard() {
                 <div className="text-center py-12 space-y-4">
                     <div className="text-6xl">🏠</div>
                     <div>
-                        <h3 className="text-xl font-semibold text-slate-200 mb-2">
-                            Bienvenue sur SourceClub !
+                        <h3 className="text-xl font-semibold text-slate-200 mb-2 italic">
+                            Bienvenue sur Melting Pote !
                         </h3>
                         <p className="text-slate-400 mb-4">
                             Tu n'as pas encore de club. Crée ou rejoins un club pour commencer à partager des sources.
