@@ -6,6 +6,7 @@ import { Button } from '../ui/Button'
 import { ClubSidebar } from './ClubSidebar'
 import { BottomNav } from './BottomNav'
 import { AddSourceModal } from '../AddSourceModal'
+import { PWAPrompt } from '../PWAPrompt'
 
 export function Layout() {
     const { signOut } = useAuth()
@@ -71,7 +72,9 @@ export function Layout() {
             </div>
 
             {/* Main Content */}
-            <main className="flex-1 overflow-y-auto overflow-x-hidden pb-20 md:pb-0">
+            <main className="flex-1 overflow-y-auto overflow-x-hidden pb-20 md:pb-0 flex flex-col">
+                <PWAPrompt />
+
                 {/* Mobile Header */}
                 <header className="md:hidden flex items-center justify-between border-b border-slate-800 bg-[#0a0a0f]/95 backdrop-blur-sm p-4 sticky top-0 z-20">
                     <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tighter italic">

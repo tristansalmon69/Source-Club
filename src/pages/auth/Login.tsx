@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../components/AuthProvider'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
@@ -12,6 +12,12 @@ export function Login() {
     const [loading, setLoading] = useState(false)
     const { signIn } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    // The intended destination from ProtectedRoute
+    const fromPath = (location.state as any)?.from?.pathname || '/'
+    const fromSearch = (location.state as any)?.from?.search || ''
+    const fromRoute = `${fromPath}${fromSearch}`
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -23,7 +29,7 @@ export function Login() {
             if (error) {
                 setError(error.message)
             } else {
-                navigate('/')
+                navigate(fromRoute, { replace: true })
             }
         } catch (err) {
             setError('Une erreur est survenue.')
@@ -72,7 +78,7 @@ export function Login() {
             <CardFooter className="justify-center">
                 <p className="text-sm text-slate-400">
                     Pas encore de compte ?{' '}
-                    <Link to="/auth/signup" className="text-indigo-400 hover:text-indigo-300 hover:underline">
+                    <Link to="/auth/signup" state={location.state} className="text-indigo-400 hover:text-indigo-300 hover:underline">
                         S'inscrire
                     </Link>
                 </p>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../components/AuthProvider'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
@@ -13,6 +13,12 @@ export function Signup() {
     const [loading, setLoading] = useState(false)
     const { signUp } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    // The intended destination from ProtectedRoute
+    const fromPath = (location.state as any)?.from?.pathname || '/'
+    const fromSearch = (location.state as any)?.from?.search || ''
+    const fromRoute = `${fromPath}${fromSearch}`
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -30,12 +36,8 @@ export function Signup() {
             if (error) {
                 setError(error.message)
             } else {
-                // Redirect to dashboard or login? Often auto-login or confirm email.
-                // Assuming auto-login or redirect to pending verification.
-                // Usually Supabase auto-confirms if unused. 
-                // We'll redirect to login or check implementation plan. "Après inscription, créer le profil...".
-                // AuthProvider sign up returns session if auto confirm is on.
-                navigate('/')
+                // Redirect to the originally requested route after successful signup
+                navigate(fromRoute, { replace: true })
             }
         } catch (err) {
             setError('Une erreur est survenue.')
@@ -96,7 +98,7 @@ export function Signup() {
             <CardFooter className="justify-center">
                 <p className="text-sm text-slate-400">
                     Déjà un compte ?{' '}
-                    <Link to="/auth/login" className="text-indigo-400 hover:text-indigo-300 hover:underline">
+                    <Link to="/auth/login" state={location.state} className="text-indigo-400 hover:text-indigo-300 hover:underline">
                         Se connecter
                     </Link>
                 </p>
