@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { X, Loader2 } from 'lucide-react'
 import { Button } from './ui/Button'
 import { Input } from './ui/Input'
@@ -16,15 +16,23 @@ interface AddSourceModalProps {
     onClose: () => void
     onSuccess: () => void
     preselectedClubId?: string
+    initialUrl?: string
 }
 
-export function AddSourceModal({ isOpen, onClose, onSuccess, preselectedClubId }: AddSourceModalProps) {
+export function AddSourceModal({ isOpen, onClose, onSuccess, preselectedClubId, initialUrl }: AddSourceModalProps) {
     const { user } = useAuth()
     const { clubs } = useClubs()
-    const [url, setUrl] = useState('')
+    const [url, setUrl] = useState(initialUrl || '')
     const [personalNote, setPersonalNote] = useState('')
     const [rating, setRating] = useState<number | null>(null)
     const [category, setCategory] = useState<Category>('Autre')
+
+    // Automatically set URL when modal opens via ShareTarget
+    useEffect(() => {
+        if (isOpen && initialUrl) {
+            setUrl(initialUrl)
+        }
+    }, [isOpen, initialUrl])
 
     // Club selection with pre-selection logic
     const getInitialClubId = () => {

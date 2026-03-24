@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useGlobalFeed } from '../hooks/useGlobalFeed'
 import { useClubs } from '../hooks/useClubs'
 import { SourceCard } from '../components/SourceCard'
@@ -7,10 +8,25 @@ import { AddSourceModal } from '../components/AddSourceModal'
 import { Filter, Loader2 } from 'lucide-react'
 
 export function Dashboard() {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const state = location.state as { openAddModal?: boolean, shareUrl?: string, shareTitle?: string } | null
+
     const [filterClubId, setFilterClubId] = useState<string | undefined>(undefined)
     const { sources, loading, refetch } = useGlobalFeed(filterClubId)
     const { clubs } = useClubs()
-    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const [isModalOpen, setIsModalOpen] = useState(state?.openAddModal || false)
+    const [initialUrl, setInitialUrl] = useState(state?.shareUrl || '')
+
+    useEffect(() => {
+        // Clear the state so the modal doesn't immediately reopen if the user refreshes
+        if (state?.openAddModal) {
+            setIsModalOpen(true)
+            setInitialUrl(state.shareUrl || '')
+            navigate(location.pathname, { replace: true, state: {} })
+        }
+    }, [state, navigate, location.pathname])
 
     return (
         <div className="space-y-6">
@@ -97,6 +113,7 @@ export function Dashboard() {
             {/* Add Source Modal */}
             <AddSourceModal
                 isOpen={isModalOpen}
+                initialUrl={initialUrl}
                 onClose={() => setIsModalOpen(false)}
                 onSuccess={() => {
                     refetch()

@@ -12,6 +12,7 @@ import { CreateClub } from './pages/clubs/CreateClub'
 import { JoinClub } from './pages/clubs/JoinClub'
 import { ClubDetail } from './pages/clubs/ClubDetail'
 import { Profile } from './pages/Profile'
+import { ShareTarget } from './pages/ShareTarget'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/clubs/join" element={<JoinClub />} />
               <Route path="/clubs/:clubId" element={<ClubDetail />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/share" element={<ShareTarget />} />
             </Route>
           </Route>
         </Routes>
