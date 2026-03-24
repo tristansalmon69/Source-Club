@@ -1,0 +1,24 @@
+{
+    "name": "Melting Pote",
+    "short_name": "Melting Pote",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "/vite.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ],
+    "share_target": {
+        "action": "/share",
+        "method": "GET",
+        "params": {
+            "url": "url",
+            "title": "title",
+            "text": "text"
+        }
+    }
+}
